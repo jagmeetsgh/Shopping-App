@@ -1,15 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { assignColor, data } from "../api/data";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({setItems}) => {
-  const categories = data.map((e) => e.category);
-  const reqCat = [...new Set(categories)];
-
-  const handeFilter = (cat) => {
-    const filterData = data.filter(e => e.category === cat);
-    setItems(filterData);
-  }
+const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -18,24 +11,12 @@ const Navbar = ({setItems}) => {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "20px",
-        borderBottom:'3px solid rgb(155, 216, 235)',
-        background:'#dcecf7',
+        borderBottom: "3px solid rgb(155, 216, 235)",
+        background: "#dcecf7",
       }}
     >
-      <div>Comp Logo</div>
-
-      <div style={{ display: "flex", gap: "20px" }}>
-        {reqCat.map((i, index) => {
-          return (
-            <button className="home-button" style={assignColor(i)} onClick={()=>handeFilter(i)} key={index} >
-              {i}
-            </button>
-          );
-        })}
-        <Link to="/">
-          <button className="home-button" onClick={() =>setItems(data)}>All</button>
-        </Link>
-      </div>
+      <div onClick={() => navigate('/')}>Comp Logo</div>
+      <button onClick={() => navigate('/create')}>Add Product</button>
     </div>
   );
 };
