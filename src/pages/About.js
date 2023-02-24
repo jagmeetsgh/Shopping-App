@@ -24,6 +24,7 @@ const About = () => {
   return (
     <div style={{textAlign:'center'}}>
       <button onClick={()=>navigate('/')}>Back</button>
+        <h2>Product Index Page</h2>
         <h1>{items.title}</h1>
         <img src={items.image} alt="Loading" width="100px" />
         <p>{items.description}</p>
